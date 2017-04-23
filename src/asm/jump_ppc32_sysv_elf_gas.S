@@ -194,6 +194,14 @@ jump_fcontext:
     # adjust stack
     addi  %r1, %r1, 244
 
+    # zero in r3 indicates first jump to context-function
+    cmpdi %r3, 0
+    bne re_entry
+
+    # transfer_t pointer is in R31 on first entry
+    mr  %r3, %r31
+
+re_entry:
     # return transfer_t 
     stw  %r6, 0(%r3)
     stw  %r5, 4(%r3)

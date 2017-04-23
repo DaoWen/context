@@ -102,7 +102,10 @@ make_fcontext:
     # compute address of returned transfer_t
     addi  %r0, %r3, 252
     mr    %r4, %r0 
-    stw   %r4, 228(%r3) 
+    stw   %r4, 224(%r3) # save as R31
+
+    # zero in r3 indicates first jump to context-function
+    stw  %r0, 228(%r3)
 
     # load LR
     mflr  %r0

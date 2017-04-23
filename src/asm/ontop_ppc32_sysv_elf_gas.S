@@ -178,7 +178,7 @@ ontop_fcontext:
     lwz  %r29, 216(%r1)  # restore R29
     lwz  %r30, 220(%r1)  # restore R30
     lwz  %r31, 224(%r1)  # restore R31
-    lwz  %r4,  228(%r1)  # restore hidden
+    lwz  %r3,  228(%r1)  # restore hidden
 
     # restore CR
     lwz   %r0, 232(%r1)
@@ -191,7 +191,16 @@ ontop_fcontext:
     # adjust stack
     addi  %r1, %r1, 244
 
+    # zero in r3 indicates first jump to context-function
+    cmpdi %r3, 0
+    bne re_entry
+
+    # transfer_t pointer is in R31 on first entry
+    mr  %r3, %r31
+
+re_entry:
     # return transfer_t 
+    mr   %r4, %r3
     stw  %r7, 0(%r4)
     stw  %r5, 4(%r4)
 
