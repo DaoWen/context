@@ -99,8 +99,8 @@ jump_fcontext:
     stfd  %f29, 120(%r1)  # save F29
     stfd  %f30, 128(%r1)  # save F30
     stfd  %f31, 136(%r1)  # save F31
-    mffs  %f0  # load FPSCR
-    stfd  %f0, 144(%r1)  # save FPSCR
+    mffs  %f6  # load FPSCR
+    stfd  %f6, 144(%r1)  # save FPSCR
 
     stw  %r13, 152(%r1)  # save R13
     stw  %r14, 156(%r1)  # save R14
@@ -156,8 +156,8 @@ jump_fcontext:
     lfd  %f29, 120(%r1)  # restore F29
     lfd  %f30, 128(%r1)  # restore F30
     lfd  %f31, 136(%r1)  # restore F31
-    lfd  %f0,  144(%r1)  # load FPSCR
-    mtfsf  0xff, %f0  # restore FPSCR
+    lfd  %f6,  144(%r1)  # load FPSCR
+    mtfsf  0xff, %f6  # restore FPSCR
 
     lwz  %r13, 152(%r1)  # restore R13
     lwz  %r14, 156(%r1)  # restore R14

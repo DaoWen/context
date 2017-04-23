@@ -96,8 +96,8 @@ make_fcontext:
     li   %r0, 0
     stw  %r0, 244(%r3)
 
-    mffs  %f0  # load FPSCR
-    stfd  %f0, 144(%r3)  # save FPSCR
+    mffs  %f6  # load FPSCR
+    stfd  %f6, 144(%r3)  # save FPSCR
 
     # compute address of returned transfer_t
     addi  %r0, %r3, 252
